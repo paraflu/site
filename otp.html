@@ -1,12 +1,27 @@
 <html>
 <head>
-<script src='jsotp.min.js"></script>
+<script src="jsotp.min.js"></script>
+  <script>
+    const form = document.getElementByTag("form");
+    form.addEventListener('submit', () => {
+      const secret = document.getElementById('secret');
+      // totp
+      const totp = new jsOTP.totp();
+      const timeCode = totp.getOtp(secret.value);
+      console.debug(timeCode);
+      
+      const result = document.getElementById("result");
+      result.innerHTML = `<h3>${timeCode}</h3>`;
+    });
+  </script>
 </head>
 <body>
 
-  <form>
-    <input type="text" value="" placeholder="secret">
+  <form onsubmit="onSubmit()">
+    <input type="text" value="" placeholder="secret" name="secret" id="secret">
     <input type="submit" value="Invia">
   </form>
+  
+  <div id="result"></div>
 </body>
 </html>
