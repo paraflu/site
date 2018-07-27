@@ -2,17 +2,21 @@
 <head>
 <script src="jsotp.min.js"></script>
   <script>
-    const form = document.getElementByTag("form");
-    form.addEventListener('submit', () => {
-      const secret = document.getElementById('secret');
-      // totp
-      const totp = new jsOTP.totp();
-      const timeCode = totp.getOtp(secret.value);
-      console.debug(timeCode);
-      
-      const result = document.getElementById("result");
-      result.innerHTML = `<h3>${timeCode}</h3>`;
-    });
+    ready = () => {
+      const form = document.getElementByTag("form");
+      form.addEventListener('submit', () => {
+        const secret = document.getElementById('secret');
+        // totp
+        const totp = new jsOTP.totp();
+        const timeCode = totp.getOtp(secret.value);
+        console.debug(timeCode);
+
+        const result = document.getElementById("result");
+        result.innerHTML = `<h3>${timeCode}</h3>`;
+      });
+    }
+    
+    
   </script>
 </head>
 <body>
